@@ -17,9 +17,17 @@ router.get('/:id', ( req, res ) => {
   })
 });
 
-router.get('/list/:id', ( req, res ) => {
+router.get('/:id/shoppinglist', ( req, res ) => {
   const {id} = req.params
-  Recipe.getShoppingListById(id)
+  Recipe.getShoppingList(id)
+  .then(obj => {
+    res.status(200).json(obj)
+  })
+});
+
+router.get('/:id/instructions', ( req, res ) => {
+  const {id} = req.params
+  Recipe.getInstructions(id)
   .then(obj => {
     res.status(200).json(obj)
   })
