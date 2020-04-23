@@ -3,7 +3,8 @@ const db = require('../data/dbConfig');
 module.exports = {
   find,
   getRecipeIngredients,
-  getIngredientsById
+  getIngredientsById,
+  add
 }
 
 function find(){
@@ -22,4 +23,9 @@ function getRecipeIngredients(id){
     .join('recipe_list as rl','rl.ingredient_id','i.id')
     .select('i.id', 'r.recipe_name')
     .where({ingredient_id: id})
+}
+
+function add(ingredient){
+  return db('ingredients')
+    .insert(ingredient)
 }

@@ -25,4 +25,15 @@ router.get('/:id/recipes', ( req, res ) => {
   })
 });
 
+router.post('/', ( req,res ) => {
+  const data = req.body;
+  ingredient.add(data)
+    .then(obj => {
+      res.status(200).json(obj)
+    })
+    .catch( err => {
+      res.status(500).json({message: 'Error, Unable to post ingredient', err})
+    })
+})
+
 module.exports = router;

@@ -11,6 +11,7 @@ exports.up = function(knex) {
         tbl.increments();
         tbl.string('ingredient', 128).notNullable();
         tbl.float('quantity').notNullable();
+        tbl.string('Measurement', 128).notNullable
       })
       .createTable('steps', tbl => {
         tbl.increments();
@@ -45,9 +46,11 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  knex.schema
-    .dropTableIfExists('recipe_list')
-    .dropTableIfExists('steps')
-    .dropTableIfExists('ingredients')
-    .dropTableIfExists('recipes')
+  return(
+    knex.schema
+      .dropTableIfExists('recipe_list')
+      .dropTableIfExists('steps')
+      .dropTableIfExists('ingredients')
+      .dropTableIfExists('recipes')
+    )
 };

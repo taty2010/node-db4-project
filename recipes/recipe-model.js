@@ -4,7 +4,9 @@ module.exports = {
   getRecipes,
   getRecipesById,
   getShoppingList,
-  getInstructions
+  getInstructions,
+  addRecipe,
+  update
 }
 
 function getRecipes(){
@@ -30,4 +32,15 @@ function getInstructions(id){
     .join('steps as s','s.recipe_id','r.id')
     .select('s.step_number', 's.instructions')
     .where({recipe_id: id})
+}
+
+function addRecipe(recipe){
+  return db('recipes')
+    .insert(recipe)
+}
+
+function update(recipe, id){
+  return db('recipes')
+    .where({id})
+    .update(recipe)
 }
